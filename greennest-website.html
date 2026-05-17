@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GreenNest — sustainable home goods made from organic, recycled, and ethically sourced materials. Carbon-neutral shipping on every order.">
+<meta name="keywords" content="sustainable home goods, eco-friendly furniture, organic bedding, carbon neutral shipping, green home">
+<title>GreenNest — Sustainable Home Goods</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset & tokens ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-50:  #f0f7ee;
+    --green-100: #d6ecd0;
+    --green-400: #4a9e5c;
+    --green-600: #2d7a3a;
+    --green-800: #1a4d24;
+    --earth-50:  #faf6f0;
+    --earth-100: #f0e6d3;
+    --earth-400: #b8976a;
+    --earth-600: #8a6840;
+    --text:      #1c1c1a;
+    --text-muted:#5a5a56;
+    --bg:        #fdfcf9;
+    --white:     #ffffff;
+    --radius:    12px;
+    --radius-lg: 20px;
+    --shadow:    0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    line-height: 1.25;
+    color: var(--text);
+  }
+
+  img { display: block; width: 100%; }
+  a   { color: inherit; text-decoration: none; }
+
+  /* ── Pages ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── Nav ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(253,252,249,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--green-100);
+    padding: 0 clamp(1rem, 5vw, 3rem);
+  }
+
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 600;
+    color: var(--green-800); cursor: pointer;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .logo-leaf {
+    width: 28px; height: 28px;
+    background: var(--green-400);
+    border-radius: 50% 4px 50% 4px;
+    display: inline-block;
+  }
+
+  .nav-links {
+    display: flex; gap: 0; list-style: none;
+  }
+
+  .nav-links li a {
+    padding: 8px 16px; border-radius: 8px;
+    font-size: 0.9rem; font-weight: 500; color: var(--text-muted);
+    transition: color .2s, background .2s;
+    cursor: pointer;
+  }
+
+  .nav-links li a:hover,
+  .nav-links li a.active {
+    color: var(--green-800);
+    background: var(--green-50);
+  }
+
+  .nav-cta {
+    background: var(--green-800);
+    color: var(--white) !important;
+    border-radius: 8px;
+    padding: 8px 20px !important;
+    font-weight: 500 !important;
+    transition: background .2s !important;
+  }
+  .nav-cta:hover { background: var(--green-600) !important; color: var(--white) !important; }
+
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+  }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
+
+  /* ── Containers ── */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1rem, 5vw, 3rem); }
+  .section    { padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 5vw, 3rem); max-width: 1200px; margin: 0 auto; }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px; border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
+    cursor: pointer; border: none; transition: all .2s;
+  }
+
+  .btn-primary {
+    background: var(--green-800); color: var(--white);
+  }
+  .btn-primary:hover { background: var(--green-600); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent; color: var(--green-800);
+    border: 1.5px solid var(--green-400);
+  }
+  .btn-outline:hover { background: var(--green-50); }
+
+  .btn-earth {
+    background: var(--earth-400); color: var(--white);
+  }
+  .btn-earth:hover { background: var(--earth-600); transform: translateY(-1px); }
+
+  /* ── Tags / badges ── */
+  .tag {
+    display: inline-block;
+    padding: 4px 12px; border-radius: 20px;
+    font-size: 0.78rem; font-weight: 500;
+    background: var(--green-50); color: var(--green-800);
+    border: 1px solid var(--green-100);
+  }
+
+  .tag-earth { background: var(--earth-50); color: var(--earth-600); border-color: var(--earth-100); }
+
+  /* ═══════════════════════════════════════
+     PAGE 1 — HOMEPAGE
+  ════════════════════════════════════════ */
+
+  /* Hero */
+  .hero {
+    padding: clamp(4rem, 10vw, 8rem) clamp(1rem, 5vw, 3rem) clamp(3rem, 8vw, 6rem);
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  .hero-eyebrow { margin-bottom: 1rem; }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    margin-bottom: 1.25rem; color: var(--green-800);
+  }
+
+  .hero p {
+    font-size: 1.1rem; color: var(--text-muted);
+    margin-bottom: 2rem; max-width: 480px;
+  }
+
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .hero-visual {
+    position: relative;
+    background: var(--green-50);
+    border-radius: var(--radius-lg);
+    overflow: hidden; aspect-ratio: 4/3;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .hero-placeholder {
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+    color: var(--green-400);
+  }
+
+  .hero-placeholder svg { width: 80px; height: 80px; opacity: 0.5; }
+  .hero-placeholder p { font-size: 0.85rem; color: var(--green-600); font-weight: 500; }
+
+  /* Impact bar */
+  .impact-bar {
+    background: var(--green-800);
+    color: var(--white);
+    padding: 2rem clamp(1rem, 5vw, 3rem);
+  }
+
+  .impact-bar-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2rem; text-align: center;
+  }
+
+  .impact-stat h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; color: var(--white); margin-bottom: 4px;
+  }
+
+  .impact-stat p { font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+
+  /* Features */
+  .features-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+
+  .feature-card {
+    background: var(--white);
+    border: 1px solid var(--green-100);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .feature-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+
+  .feature-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: var(--green-50);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1rem;
+  }
+
+  .feature-card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .feature-card p  { font-size: 0.9rem; color: var(--text-muted); }
+
+  /* Products */
+  .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+  .section-header h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+
+  .products-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    background: var(--white);
+    border: 1px solid var(--green-100);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+
+  .product-img {
+    aspect-ratio: 1; background: var(--earth-50);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem; color: var(--earth-400);
+    position: relative;
+  }
+
+  .product-badge {
+    position: absolute; top: 12px; left: 12px;
+  }
+
+  .product-info { padding: 1.25rem; }
+  .product-info h3 { font-size: 1rem; margin-bottom: 4px; }
+  .product-info .meta { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+
+  .product-footer {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .price { font-weight: 500; font-size: 1.05rem; color: var(--green-800); }
+
+  .add-btn {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--green-50); color: var(--green-800);
+    border: 1px solid var(--green-100);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 1.2rem;
+    transition: background .2s;
+  }
+  .add-btn:hover { background: var(--green-100); }
+
+  /* Testimonial */
+  .testimonial-strip {
+    background: var(--earth-50); border-radius: var(--radius-lg);
+    padding: 3rem 2rem; margin-top: 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+  }
+
+  .testimonial blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-style: italic;
+    color: var(--text); margin-bottom: 1rem; line-height: 1.6;
+  }
+
+  .testimonial .author { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+  .stars { color: #e6a817; font-size: 0.9rem; margin-bottom: 0.75rem; letter-spacing: 2px; }
+
+  /* Newsletter */
+  .newsletter {
+    background: var(--green-800);
+    color: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 3rem 2.5rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+  }
+
+  @media (max-width: 640px) {
+    .newsletter { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+
+  .newsletter h2 { font-size: 1.8rem; color: var(--white); margin-bottom: 0.75rem; }
+  .newsletter p  { color: rgba(255,255,255,0.75); font-size: 0.95rem; }
+
+  .newsletter-form { display: flex; gap: 10px; flex-wrap: wrap; }
+  .newsletter-form input {
+    flex: 1; min-width: 200px;
+    padding: 12px 16px; border-radius: var(--radius);
+    border: none; font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; outline: none;
+    background: rgba(255,255,255,0.12); color: var(--white);
+  }
+  .newsletter-form input::placeholder { color: rgba(255,255,255,0.5); }
+  .newsletter-form button {
+    padding: 12px 24px; background: var(--earth-400);
+    color: var(--white); border: none; border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    cursor: pointer; transition: background .2s;
+  }
+  .newsletter-form button:hover { background: var(--earth-600); }
+
+  /* ═══════════════════════════════════════
+     PAGE 2 — SHOP
+  ════════════════════════════════════════ */
+
+  .page-hero {
+    background: var(--green-50);
+    padding: clamp(2.5rem, 6vw, 4rem) clamp(1rem, 5vw, 3rem);
+    text-align: center;
+  }
+
+  .page-hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--green-800); margin-bottom: 0.75rem; }
+  .page-hero p  { color: var(--text-muted); max-width: 520px; margin: 0 auto; }
+
+  .shop-layout {
+    display: grid; grid-template-columns: 220px 1fr; gap: 2.5rem;
+    max-width: 1200px; margin: 0 auto; padding: clamp(2rem, 5vw, 3.5rem) clamp(1rem, 5vw, 3rem);
+  }
+
+  @media (max-width: 768px) {
+    .shop-layout { grid-template-columns: 1fr; }
+    .filters-sidebar { display: none; }
+  }
+
+  .filters-sidebar h3 { font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 1rem; }
+
+  .filter-group { margin-bottom: 2rem; }
+  .filter-group h4 { font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500; margin-bottom: 0.75rem; }
+
+  .filter-option {
+    display: flex; align-items: center; gap: 8px;
+    padding: 4px 0; font-size: 0.9rem; color: var(--text-muted);
+    cursor: pointer;
+  }
+  .filter-option input { accent-color: var(--green-600); }
+
+  .shop-top {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;
+  }
+
+  .shop-top p { font-size: 0.9rem; color: var(--text-muted); }
+
+  .sort-select {
+    padding: 8px 14px; border: 1px solid var(--green-100);
+    border-radius: var(--radius); background: var(--white);
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    color: var(--text); cursor: pointer; outline: none;
+  }
+
+  /* ═══════════════════════════════════════
+     PAGE 3 — EARTH STANDARD
+  ════════════════════════════════════════ */
+
+  .standard-hero {
+    background: linear-gradient(135deg, var(--green-800) 0%, var(--green-600) 100%);
+    color: var(--white);
+    padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 5vw, 3rem);
+    text-align: center;
+  }
+
+  .standard-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); color: var(--white); margin-bottom: 1rem; }
+  .standard-hero p  { color: rgba(255,255,255,0.8); max-width: 580px; margin: 0 auto 2rem; font-size: 1.05rem; }
+
+  .criteria-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+
+  .criterion-card {
+    background: var(--white);
+    border: 1px solid var(--green-100);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+  }
+
+  .criterion-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; color: var(--green-100);
+    line-height: 1; margin-bottom: 0.75rem;
+  }
+
+  .criterion-card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--green-800); }
+  .criterion-card p  { font-size: 0.9rem; color: var(--text-muted); }
+
+  .checklist {
+    margin-top: 1rem; list-style: none;
+  }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 0.88rem; color: var(--text-muted); padding: 4px 0;
+  }
+  .checklist li::before {
+    content: '✓'; color: var(--green-400); font-weight: 600; flex-shrink: 0; margin-top: 2px;
+  }
+
+  .partners-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem; margin-top: 2rem;
+  }
+
+  .partner-chip {
+    background: var(--white);
+    border: 1px solid var(--green-100);
+    border-radius: var(--radius);
+    padding: 1rem; text-align: center;
+    font-size: 0.9rem; font-weight: 500; color: var(--green-800);
+  }
+
+  /* ═══════════════════════════════════════
+     PAGE 4 — IMPACT
+  ════════════════════════════════════════ */
+
+  .impact-hero {
+    background: var(--earth-50);
+    padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 5vw, 3rem);
+    text-align: center;
+  }
+  .impact-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); color: var(--green-800); margin-bottom: 0.75rem; }
+  .impact-hero p  { color: var(--text-muted); max-width: 540px; margin: 0 auto; }
+
+  .big-stats {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+
+  .big-stat {
+    background: var(--white);
+    border: 1px solid var(--green-100);
+    border-radius: var(--radius-lg);
+    padding: 2rem; text-align: center;
+  }
+
+  .big-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem); color: var(--green-800);
+    font-weight: 600; margin-bottom: 0.25rem;
+  }
+
+  .big-stat .label { font-size: 0.88rem; color: var(--text-muted); }
+
+  .timeline { margin-top: 3rem; }
+
+  .timeline-item {
+    display: grid; grid-template-columns: 100px 1fr;
+    gap: 1.5rem; padding: 1.5rem 0;
+    border-bottom: 1px solid var(--green-100);
+  }
+
+  .timeline-item:last-child { border-bottom: none; }
+
+  .timeline-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: var(--green-400); font-weight: 600; padding-top: 4px;
+  }
+
+  .timeline-item h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+  .timeline-item p  { font-size: 0.9rem; color: var(--text-muted); }
+
+  .co2-tracker {
+    background: var(--green-800); color: var(--white);
+    border-radius: var(--radius-lg); padding: 2.5rem;
+    text-align: center; margin-top: 3rem;
+  }
+  .co2-tracker h3 { color: var(--white); font-size: 1.3rem; margin-bottom: 0.5rem; }
+  .co2-tracker p  { color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+  .co2-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem); color: #6fdb8f;
+    font-weight: 600;
+  }
+
+  .co2-unit { font-size: 1rem; color: rgba(255,255,255,0.6); margin-top: 0.25rem; }
+
+  /* ═══════════════════════════════════════
+     PAGE 5 — JOURNAL
+  ════════════════════════════════════════ */
+
+  .journal-hero {
+    background: var(--green-50);
+    padding: clamp(2.5rem, 6vw, 4rem) clamp(1rem, 5vw, 3rem);
+    text-align: center;
+  }
+  .journal-hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--green-800); margin-bottom: 0.75rem; }
+  .journal-hero p  { color: var(--text-muted); max-width: 520px; margin: 0 auto; }
+
+  .journal-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.75rem; margin-top: 3rem;
+  }
+
+  .article-card {
+    background: var(--white);
+    border: 1px solid var(--green-100);
+    border-radius: var(--radius-lg); overflow: hidden;
+    cursor: pointer; transition: transform .2s, box-shadow .2s;
+  }
+  .article-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+
+  .article-img {
+    aspect-ratio: 16/9; background: var(--earth-50);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; color: var(--earth-400);
+  }
+
+  .article-body { padding: 1.5rem; }
+  .article-meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .article-body h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .article-body p  { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem; }
+  .read-more { font-size: 0.88rem; font-weight: 500; color: var(--green-600); }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--green-800); color: var(--white);
+    padding: 3rem clamp(1rem, 5vw, 3rem) 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .footer-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 3rem; margin-bottom: 2.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+
+  .footer-brand .logo { color: var(--white); margin-bottom: 1rem; }
+  .footer-brand p { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 280px; }
+
+  .footer-col h4 { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); margin-bottom: 1rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.5rem; }
+  .footer-col a { font-size: 0.9rem; color: rgba(255,255,255,0.7); transition: color .2s; cursor: pointer; }
+  .footer-col a:hover { color: var(--white); }
+
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+    font-size: 0.83rem; color: rgba(255,255,255,0.5);
+  }
+
+  .certifications { display: flex; gap: 8px; flex-wrap: wrap; }
+  .cert-badge {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px; padding: 4px 10px;
+    font-size: 0.75rem; color: rgba(255,255,255,0.7);
+  }
+
+  /* ── Mobile nav overlay ── */
+  .mobile-nav {
+    display: none;
+    position: fixed; inset: 0; z-index: 200;
+    background: var(--bg);
+    flex-direction: column; padding: 1.5rem;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+  .mobile-nav ul { list-style: none; }
+  .mobile-nav li { border-bottom: 1px solid var(--green-100); }
+  .mobile-nav a {
+    display: block; padding: 1rem 0;
+    font-size: 1.1rem; font-weight: 500; color: var(--text); cursor: pointer;
+  }
+
+  .close-btn {
+    background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text);
+    width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ── Utilities ── */
+  .text-center { text-align: center; }
+  .mt-sm { margin-top: 1rem; }
+  .mt-md { margin-top: 2rem; }
+  .mt-lg { margin-top: 3rem; }
+  .divider { height: 1px; background: var(--green-100); margin: 0; }
+
+  /* ── Fade-in animation ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .page.active .hero,
+  .page.active .page-hero,
+  .page.active .standard-hero,
+  .page.active .impact-hero,
+  .page.active .journal-hero {
+    animation: fadeUp .4s ease both;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo" onclick="showPage('home')">
+      <span class="logo-leaf"></span>
+      GreenNest
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a onclick="showPage('home')"           id="nav-home">Home</a></li>
+      <li><a onclick="showPage('shop')"           id="nav-shop">Shop</a></li>
+      <li><a onclick="showPage('standard')"       id="nav-standard">Earth Standard</a></li>
+      <li><a onclick="showPage('impact')"         id="nav-impact">Impact</a></li>
+      <li><a onclick="showPage('journal')"        id="nav-journal">Journal</a></li>
+      <li><a onclick="showPage('shop')" class="nav-cta">Shop now</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Mobile nav ── -->
+<div class="mobile-nav" id="mobile-nav">
+  <div class="mobile-nav-header">
+    <div class="logo">
+      <span class="logo-leaf"></span>GreenNest
+    </div>
+    <button class="close-btn" onclick="toggleMobileNav()">✕</button>
+  </div>
+  <ul>
+    <li><a onclick="showPage('home');   toggleMobileNav()">Home</a></li>
+    <li><a onclick="showPage('shop');   toggleMobileNav()">Shop</a></li>
+    <li><a onclick="showPage('standard'); toggleMobileNav()">Earth Standard</a></li>
+    <li><a onclick="showPage('impact'); toggleMobileNav()">Impact</a></li>
+    <li><a onclick="showPage('journal'); toggleMobileNav()">Journal</a></li>
+  </ul>
+  <div style="margin-top:2rem">
+    <button class="btn btn-primary" style="width:100%" onclick="showPage('shop'); toggleMobileNav()">Shop now →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 1 — HOMEPAGE
+════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div>
+      <div class="hero-eyebrow">
+        <span class="tag">🌿 Carbon-neutral shipping</span>
+      </div>
+      <h1>A home that's good for you and the planet</h1>
+      <p>GreenNest curates the finest eco-certified home goods — from organic bedding to recycled-material furniture — so every purchase you make leaves the earth a little better than you found it.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="showPage('shop')">Shop the collection →</button>
+        <button class="btn btn-outline" onclick="showPage('standard')">Our Earth Standard</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-placeholder">
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 8C22 8 8 22 8 40s14 32 32 32 32-14 32-32S58 8 40 8z" stroke="#4a9e5c" stroke-width="2"/>
+          <path d="M40 20c0 0-16 12-16 24a16 16 0 0032 0C56 32 40 20 40 20z" fill="#4a9e5c" opacity="0.3"/>
+          <path d="M40 20v28" stroke="#4a9e5c" stroke-width="2" stroke-linecap="round"/>
+          <path d="M30 30c5-2 10 0 10 0" stroke="#4a9e5c" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M30 38c5-2 10 0 10 0" stroke="#4a9e5c" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <p>Product photography placeholder</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Impact bar -->
+  <div class="impact-bar">
+    <div class="impact-bar-inner">
+      <div class="impact-stat"><h3>48,200+</h3><p>kg CO₂ offset this year</p></div>
+      <div class="impact-stat"><h3>100%</h3><p>Carbon-neutral shipping</p></div>
+      <div class="impact-stat"><h3>380+</h3><p>Earth-certified products</p></div>
+      <div class="impact-stat"><h3>62</h3><p>Ethical supplier partners</p></div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="section">
+    <div class="text-center">
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem)">Why GreenNest?</h2>
+      <p style="color:var(--text-muted);max-width:480px;margin:0.75rem auto 0">We set a higher bar so you don't have to research every label.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🌱</div>
+        <h3>Earth Standard certified</h3>
+        <p>Every product passes our rigorous 12-point checklist covering materials, supply chain, and end-of-life recyclability before it ever appears on our site.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <h3>Carbon-neutral delivery</h3>
+        <p>We partner with verified offset programs to neutralise every gram of CO₂ from warehouse to doorstep — at no extra cost to you.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Full supply chain transparency</h3>
+        <p>Every product page shows you exactly where materials were sourced, who made it, and what certifications the manufacturer holds.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">♻️</div>
+        <h3>Free returns & recycling</h3>
+        <p>Changed your mind? Return it free of charge. End of life? We'll take it back and make sure it's properly recycled or composted.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured products -->
+  <div class="section" style="padding-top:0">
+    <div class="section-header">
+      <h2>Featured products</h2>
+      <button class="btn btn-outline" onclick="showPage('shop')">View all →</button>
+    </div>
+    <div class="products-grid">
+      <div class="product-card" onclick="showPage('shop')">
+        <div class="product-img">🛏️<div class="product-badge"><span class="tag">Bestseller</span></div></div>
+        <div class="product-info">
+          <h3>Organic Cotton Duvet</h3>
+          <p class="meta">GOTS-certified · 100% organic cotton</p>
+          <div class="product-footer">
+            <span class="price">$149</span>
+            <button class="add-btn">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card" onclick="showPage('shop')">
+        <div class="product-img">🪑<div class="product-badge"><span class="tag tag-earth">New</span></div></div>
+        <div class="product-info">
+          <h3>Reclaimed Oak Dining Chair</h3>
+          <p class="meta">FSC-certified reclaimed wood</p>
+          <div class="product-footer">
+            <span class="price">$285</span>
+            <button class="add-btn">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card" onclick="showPage('shop')">
+        <div class="product-img">🧴</div>
+        <div class="product-info">
+          <h3>Plant-based All-Purpose Cleaner</h3>
+          <p class="meta">Refillable · plastic-free packaging</p>
+          <div class="product-footer">
+            <span class="price">$18</span>
+            <button class="add-btn">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card" onclick="showPage('shop')">
+        <div class="product-img">🕯️</div>
+        <div class="product-info">
+          <h3>Soy Wax Candle Set</h3>
+          <p class="meta">Hand-poured · essential oils only</p>
+          <div class="product-footer">
+            <span class="price">$46</span>
+            <button class="add-btn">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="section" style="padding-top:0">
+    <h2 style="margin-bottom:1.5rem">What our customers say</h2>
+    <div class="testimonial-strip">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Finally a brand that actually walks the talk. The duvet is the most comfortable thing I own and knowing it's organic makes me sleep even better."</blockquote>
+        <p class="author">— Sarah M., Melbourne</p>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I was sceptical about the price premium but the quality is extraordinary. The reclaimed oak chair looks stunning and I know exactly where the wood came from."</blockquote>
+        <p class="author">— James T., London</p>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The refillable cleaning products have cut our household plastic waste by 80%. And they actually clean better than the supermarket brands."</blockquote>
+        <p class="author">— Priya K., Singapore</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Newsletter -->
+  <div class="section" style="padding-top:0">
+    <div class="newsletter">
+      <div>
+        <h2>Live more sustainably, effortlessly</h2>
+        <p>Get our monthly guide: new certified products, sustainability tips, and our honest impact report — delivered straight to your inbox.</p>
+      </div>
+      <div>
+        <div class="newsletter-form">
+          <input type="email" placeholder="your@email.com">
+          <button>Subscribe</button>
+        </div>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);margin-top:0.75rem">No spam. Unsubscribe anytime. We'll never share your data.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 2 — SHOP
+════════════════════════════════════════ -->
+<div id="page-shop" class="page">
+  <div class="page-hero">
+    <span class="tag" style="margin-bottom:1rem;display:inline-block">380+ Earth-certified products</span>
+    <h1>Shop sustainable home goods</h1>
+    <p>Every item in our catalogue meets our Earth Standard — verified for materials, ethics, and environmental impact.</p>
+  </div>
+
+  <div class="shop-layout">
+    <!-- Sidebar -->
+    <aside class="filters-sidebar">
+      <h3>Filter by</h3>
+      <div class="filter-group">
+        <h4>Category</h4>
+        <label class="filter-option"><input type="checkbox" checked> Bedding & textiles</label>
+        <label class="filter-option"><input type="checkbox"> Furniture</label>
+        <label class="filter-option"><input type="checkbox"> Kitchen & dining</label>
+        <label class="filter-option"><input type="checkbox"> Cleaning</label>
+        <label class="filter-option"><input type="checkbox"> Lighting</label>
+        <label class="filter-option"><input type="checkbox"> Outdoor</label>
+      </div>
+      <div class="filter-group">
+        <h4>Certification</h4>
+        <label class="filter-option"><input type="checkbox" checked> GOTS</label>
+        <label class="filter-option"><input type="checkbox" checked> FSC</label>
+        <label class="filter-option"><input type="checkbox"> Fair Trade</label>
+        <label class="filter-option"><input type="checkbox"> B Corp</label>
+        <label class="filter-option"><input type="checkbox"> Cradle to Cradle</label>
+      </div>
+      <div class="filter-group">
+        <h4>Price range</h4>
+        <label class="filter-option"><input type="checkbox"> Under $50</label>
+        <label class="filter-option"><input type="checkbox" checked> $50 – $150</label>
+        <label class="filter-option"><input type="checkbox"> $150 – $300</label>
+        <label class="filter-option"><input type="checkbox"> $300+</label>
+      </div>
+      <button class="btn btn-outline" style="width:100%;justify-content:center">Apply filters</button>
+    </aside>
+
+    <!-- Product grid -->
+    <div>
+      <div class="shop-top">
+        <p>Showing <strong>24</strong> of 380 products</p>
+        <select class="sort-select">
+          <option>Sort: Most popular</option>
+          <option>Sort: Price low–high</option>
+          <option>Sort: Price high–low</option>
+          <option>Sort: Newest</option>
+        </select>
+      </div>
+      <div class="products-grid">
+        <div class="product-card"><div class="product-img">🛏️<div class="product-badge"><span class="tag">Bestseller</span></div></div><div class="product-info"><h3>Organic Cotton Duvet</h3><p class="meta">GOTS-certified · 100% organic cotton</p><div class="product-footer"><span class="price">$149</span><button class="add-btn">+</button></div></div></div>
+        <div class="product-card"><div class="product-img">🪑<div class="product-badge"><span class="tag tag-earth">New</span></div></div><div class="product-info"><h3>Reclaimed Oak Dining Chair</h3><p class="meta">FSC-certified reclaimed wood</p><div class="product-footer"><span class="price">$285</span><button class="add-btn">+</button></div></div></div>
+        <div class="product-card"><div class="product-img">🧴</div><div class="product-info"><h3>Plant-based Cleaner</h3><p class="meta">Refillable · plastic-free</p><div class="product-footer"><span class="price">$18</span><button class="add-btn">+</button></div></div></div>
+        <div class="product-card"><div class="product-img">🕯️</div><div class="product-info"><h3>Soy Wax Candle Set</h3><p class="meta">Hand-poured · essential oils</p><div class="product-footer"><span class="price">$46</span><button class="add-btn">+</button></div></div></div>
+        <div class="product-card"><div class="product-img">🧺</div><div class="product-info"><h3>Seagrass Storage Basket</h3><p class="meta">Handwoven · fair trade</p><div class="product-footer"><span class="price">$64</span><button class="add-btn">+</button></div></div></div>
+        <div class="product-card"><div class="product-img">🪴</div><div class="product-info"><h3>Terracotta Plant Pots (set of 3)</h3><p class="meta">Natural clay · unglazed</p><div class="product-footer"><span class="price">$38</span><button class="add-btn">+</button></div></div></div>
+        <div class="product-card"><div class="product-img">🍽️</div><div class="product-info"><h3>Bamboo Dinner Set</h3><p class="meta">FSC bamboo · plastic-free</p><div class="product-footer"><span class="price">$92</span><button class="add-btn">+</button></div></div></div>
+        <div class="product-card"><div class="product-img">💡</div><div class="product-info"><h3>Cork Table Lamp</h3><p class="meta">Natural cork · LED ready</p><div class="product-footer"><span class="price">$115</span><button class="add-btn">+</button></div></div></div>
+      </div>
+      <div class="text-center mt-lg">
+        <button class="btn btn-outline">Load more products</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 3 — EARTH STANDARD
+════════════════════════════════════════ -->
+<div id="page-standard" class="page">
+  <div class="standard-hero">
+    <span class="tag" style="background:rgba(255,255,255,0.15);color:white;border-color:rgba(255,255,255,0.3);margin-bottom:1rem;display:inline-block">Our certification framework</span>
+    <h1>The Earth Standard</h1>
+    <p>Before any product joins GreenNest, it must pass our independent 12-point evaluation. This isn't a marketing badge — it's a rigorous audit we stand behind.</p>
+    <button class="btn" style="background:white;color:var(--green-800)" onclick="showPage('shop')">Browse certified products →</button>
+  </div>
+
+  <div class="section">
+    <div class="text-center">
+      <h2>The 12-point checklist</h2>
+      <p style="color:var(--text-muted);max-width:500px;margin:0.75rem auto 0">Every criterion must be met — there are no partial passes.</p>
+    </div>
+    <div class="criteria-grid">
+      <div class="criterion-card">
+        <div class="criterion-num">01</div>
+        <h3>Material origin</h3>
+        <p>Raw materials must be traceable to a verified, sustainable source — certified organic farms, responsibly managed forests, or post-consumer recycled streams.</p>
+        <ul class="checklist">
+          <li>Written supplier declaration</li>
+          <li>Third-party chain-of-custody certificate</li>
+          <li>Annual audit requirement</li>
+        </ul>
+      </div>
+      <div class="criterion-card">
+        <div class="criterion-num">02</div>
+        <h3>Manufacturing conditions</h3>
+        <p>Workers at every production facility must earn a living wage, operate in safe conditions, and have the right to organise.</p>
+        <ul class="checklist">
+          <li>SA8000 or equivalent certification</li>
+          <li>No child or forced labour</li>
+          <li>Fair wage documentation</li>
+        </ul>
+      </div>
+      <div class="criterion-card">
+        <div class="criterion-num">03</div>
+        <h3>Carbon footprint</h3>
+        <p>Each product's lifecycle carbon footprint must be measured and disclosed. High-emission products must demonstrate a credible reduction roadmap.</p>
+        <ul class="checklist">
+          <li>LCA (life cycle assessment) on file</li>
+          <li>Scope 1, 2 & 3 emissions disclosed</li>
+          <li>Annual reduction targets set</li>
+        </ul>
+      </div>
+      <div class="criterion-card">
+        <div class="criterion-num">04</div>
+        <h3>Packaging</h3>
+        <p>All primary and secondary packaging must be plastic-free, home-compostable or curbside-recyclable, and printed with non-toxic inks.</p>
+        <ul class="checklist">
+          <li>Zero virgin plastic policy</li>
+          <li>Compostable or recyclable only</li>
+          <li>Minimised packaging weight</li>
+        </ul>
+      </div>
+      <div class="criterion-card">
+        <div class="criterion-num">05</div>
+        <h3>End-of-life design</h3>
+        <p>Products should be designed to be repaired, disassembled, composted, or recycled at the end of their useful life — not landfilled.</p>
+        <ul class="checklist">
+          <li>Repair programme or spare parts</li>
+          <li>Take-back or recycling scheme</li>
+          <li>No mixed-material gluing</li>
+        </ul>
+      </div>
+      <div class="criterion-card">
+        <div class="criterion-num">06</div>
+        <h3>Chemical safety</h3>
+        <p>No substances of very high concern (SVHCs), no PFAS, no formaldehyde-releasing finishes, and full ingredient disclosure for any product that enters the home environment.</p>
+        <ul class="checklist">
+          <li>REACH compliance verified</li>
+          <li>OEKO-TEX or equivalent for textiles</li>
+          <li>Full ingredient list available</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-lg">
+      <h2 style="margin-bottom:1rem">Certified brand partners</h2>
+      <p style="color:var(--text-muted);margin-bottom:0">All 62 of our supplier partners have been independently audited against the Earth Standard. We publish their results annually.</p>
+      <div class="partners-grid">
+        <div class="partner-chip">🌿 PureWeave Textiles</div>
+        <div class="partner-chip">🌲 ForestForm Furniture</div>
+        <div class="partner-chip">♻️ LoopCraft</div>
+        <div class="partner-chip">🌾 Harvest Home</div>
+        <div class="partner-chip">🧪 CleanRoot Labs</div>
+        <div class="partner-chip">🪵 TerraWood Co.</div>
+        <div class="partner-chip">🌊 OceanWeave</div>
+        <div class="partner-chip">🌻 SunHome Studio</div>
+      </div>
+    </div>
+
+    <div class="mt-lg text-center">
+      <h2 style="margin-bottom:0.75rem">Want to become a supplier?</h2>
+      <p style="color:var(--text-muted);max-width:460px;margin:0 auto 1.5rem">We review new brand applications quarterly. If you make something exceptional and sustainable, we'd love to hear from you.</p>
+      <button class="btn btn-primary">Apply to partner with us →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 4 — IMPACT
+════════════════════════════════════════ -->
+<div id="page-impact" class="page">
+  <div class="impact-hero">
+    <span class="tag" style="margin-bottom:1rem;display:inline-block">Transparency report 2024</span>
+    <h1>Our impact, in plain numbers</h1>
+    <p>We publish our environmental and social impact data every year — the good and the not-yet-good. No greenwashing, no spin.</p>
+  </div>
+
+  <div class="section">
+    <div class="big-stats">
+      <div class="big-stat">
+        <div class="num">48,214</div>
+        <div class="label">kg of CO₂ offset this year</div>
+      </div>
+      <div class="big-stat">
+        <div class="num">100%</div>
+        <div class="label">Shipments carbon-neutralised</div>
+      </div>
+      <div class="big-stat">
+        <div class="num">62</div>
+        <div class="label">Certified supplier partners</div>
+      </div>
+      <div class="big-stat">
+        <div class="num">380+</div>
+        <div class="label">Earth Standard products</div>
+      </div>
+      <div class="big-stat">
+        <div class="num">18,400</div>
+        <div class="label">Single-use plastic items eliminated</div>
+      </div>
+      <div class="big-stat">
+        <div class="num">$240K</div>
+        <div class="label">Paid to reforestation partners</div>
+      </div>
+    </div>
+
+    <!-- CO2 tracker -->
+    <div class="co2-tracker">
+      <h3>Live CO₂ offset counter</h3>
+      <p>This counter updates in real time as orders are placed and offset credits are purchased.</p>
+      <div class="co2-num" id="co2-counter">48,214</div>
+      <div class="co2-unit">kg of CO₂ offset since 1 Jan 2024</div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="mt-lg">
+      <h2 style="margin-bottom:0.5rem">Our journey</h2>
+      <p style="color:var(--text-muted);margin-bottom:0">A brief history of the commitments we've made and kept.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2019</div>
+          <div>
+            <h3>GreenNest founded</h3>
+            <p>Started with 12 products from 4 suppliers, a handshake deal on ethical sourcing, and a conviction that home goods didn't have to cost the earth.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2020</div>
+          <div>
+            <h3>Earth Standard launched</h3>
+            <p>We codified our sourcing criteria into the formal 12-point Earth Standard and began independent third-party audits of all suppliers.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2021</div>
+          <div>
+            <h3>Carbon-neutral shipping achieved</h3>
+            <p>Partnered with South Pole to offset 100% of shipping emissions across all orders. First UK home-goods retailer to achieve this across the entire delivery network.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2022</div>
+          <div>
+            <h3>Take-back programme launched</h3>
+            <p>Customers can now return end-of-life GreenNest products for free. We ensure they are repaired, resold, or responsibly recycled — never landfilled.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2023</div>
+          <div>
+            <h3>B Corp certification achieved</h3>
+            <p>After an 18-month assessment process, GreenNest was certified as a B Corporation — joining a global community of businesses committed to people and planet over profit alone.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2024</div>
+          <div>
+            <h3>Scope 3 emissions fully mapped</h3>
+            <p>For the first time, we can account for 100% of our supply chain emissions — from raw material extraction to customer doorstep. Our target: 50% reduction by 2027.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-lg text-center">
+      <button class="btn btn-primary" onclick="showPage('standard')">Learn about our Earth Standard →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 5 — JOURNAL
+════════════════════════════════════════ -->
+<div id="page-journal" class="page">
+  <div class="journal-hero">
+    <span class="tag" style="margin-bottom:1rem;display:inline-block">Sustainability guides & inspiration</span>
+    <h1>The GreenNest Journal</h1>
+    <p>Honest advice on sustainable living — buying guides, how-tos, and the thinking behind our product choices.</p>
+  </div>
+
+  <div class="section">
+    <!-- Featured -->
+    <div style="background:var(--white);border:1px solid var(--green-100);border-radius:var(--radius-lg);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:0;cursor:pointer;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'" onmouseout="this.style.boxShadow='none'">
+      <div style="background:var(--earth-50);display:flex;align-items:center;justify-content:center;font-size:4rem;aspect-ratio:unset;min-height:240px">🏡</div>
+      <div style="padding:2rem">
+        <span class="tag tag-earth" style="margin-bottom:1rem;display:inline-block">Buying guide</span>
+        <h2 style="font-size:1.4rem;margin-bottom:0.75rem">The complete guide to a plastic-free kitchen in 2024</h2>
+        <p style="color:var(--text-muted);font-size:0.92rem;margin-bottom:1.25rem">Switching to a plastic-free kitchen doesn't have to be expensive or overwhelming. We've tested 48 products so you don't have to — here's exactly what we'd buy, and in what order.</p>
+        <span class="read-more">Read the guide →</span>
+        <p style="font-size:0.78rem;color:var(--text-muted);margin-top:1rem">12 min read · Updated November 2024</p>
+      </div>
+    </div>
+
+    <div class="journal-grid">
+      <div class="article-card">
+        <div class="article-img">🛏️</div>
+        <div class="article-body">
+          <p class="article-meta">Buying guide · 8 min read</p>
+          <h3>What does GOTS certification actually mean?</h3>
+          <p>The Global Organic Textile Standard is the most rigorous organic textile certification available — but most brands use the term loosely. Here's what to look for.</p>
+          <span class="read-more">Read more →</span>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="article-img">🌡️</div>
+        <div class="article-body">
+          <p class="article-meta">Sustainability · 5 min read</p>
+          <h3>Is carbon-neutral shipping actually possible?</h3>
+          <p>We explain how our shipping offset programme works, why we chose South Pole as our partner, and what the limitations of carbon offsetting are — honestly.</p>
+          <span class="read-more">Read more →</span>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="article-img">🪵</div>
+        <div class="article-body">
+          <p class="article-meta">Materials · 6 min read</p>
+          <h3>Reclaimed vs FSC-certified wood: which is better?</h3>
+          <p>Both are far better than virgin tropical hardwood, but they're not the same. We break down the environmental trade-offs to help you choose with confidence.</p>
+          <span class="read-more">Read more →</span>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="article-img">🏠</div>
+        <div class="article-body">
+          <p class="article-meta">How-to · 10 min read</p>
+          <h3>10 high-impact swaps for a more sustainable home (under $50 each)</h3>
+          <p>You don't need to replace everything at once. These ten swaps have the biggest environmental return for the smallest outlay — ranked by impact.</p>
+          <span class="read-more">Read more →</span>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="article-img">♻️</div>
+        <div class="article-body">
+          <p class="article-meta">Circular economy · 7 min read</p>
+          <h3>How our take-back programme works — and where your stuff actually goes</h3>
+          <p>We launched take-back in 2022. Here's an honest look at what we've collected, how it's been processed, and what we're still working to improve.</p>
+          <span class="read-more">Read more →</span>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="article-img">🌿</div>
+        <div class="article-body">
+          <p class="article-meta">Supplier spotlight · 4 min read</p>
+          <h3>Inside PureWeave Textiles: how they grow, weave, and dye without chemicals</h3>
+          <p>We visited the PureWeave farm and factory in Portugal. Here's what we found — including the parts we asked them to improve before we'd list their products.</p>
+          <span class="read-more">Read more →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="mt-lg">
+      <h2 style="margin-bottom:1.5rem">Browse by topic</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <button class="btn btn-outline" style="padding:10px 20px">Buying guides</button>
+        <button class="btn btn-outline" style="padding:10px 20px">Materials deep-dives</button>
+        <button class="btn btn-outline" style="padding:10px 20px">Supplier spotlights</button>
+        <button class="btn btn-outline" style="padding:10px 20px">How-to & DIY</button>
+        <button class="btn btn-outline" style="padding:10px 20px">Impact & transparency</button>
+        <button class="btn btn-outline" style="padding:10px 20px">Policy & news</button>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="newsletter mt-lg">
+      <div>
+        <h2>Never miss an article</h2>
+        <p>New guides and spotlights every two weeks. Plus our monthly impact snapshot — numbers, not spin.</p>
+      </div>
+      <div>
+        <div class="newsletter-form">
+          <input type="email" placeholder="your@email.com">
+          <button>Subscribe</button>
+        </div>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);margin-top:0.75rem">No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Footer (shared) ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo"><span class="logo-leaf"></span>GreenNest</div>
+      <p>Curating the world's finest eco-certified home goods since 2019. B Corp certified. Carbon-neutral shipping on every order.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a onclick="showPage('shop')">All products</a></li>
+        <li><a onclick="showPage('shop')">Bedding & textiles</a></li>
+        <li><a onclick="showPage('shop')">Furniture</a></li>
+        <li><a onclick="showPage('shop')">Kitchen & dining</a></li>
+        <li><a onclick="showPage('shop')">Cleaning</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a onclick="showPage('standard')">Earth Standard</a></li>
+        <li><a onclick="showPage('impact')">Impact report</a></li>
+        <li><a onclick="showPage('journal')">Journal</a></li>
+        <li><a>About us</a></li>
+        <li><a>Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a>Track your order</a></li>
+        <li><a>Returns & recycling</a></li>
+        <li><a>FAQ</a></li>
+        <li><a>Contact us</a></li>
+        <li><a>Supplier enquiries</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 GreenNest. All rights reserved.</span>
+    <div class="certifications">
+      <span class="cert-badge">B Corp certified</span>
+      <span class="cert-badge">Carbon neutral</span>
+      <span class="cert-badge">1% for the Planet</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    const navEl = document.getElementById('nav-' + id);
+    if (navEl) navEl.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleMobileNav() {
+    document.getElementById('mobile-nav').classList.toggle('open');
+  }
+
+  // Live CO2 counter animation
+  function animateCounter() {
+    const el = document.getElementById('co2-counter');
+    if (!el) return;
+    let base = 48214;
+    setInterval(() => {
+      base += Math.floor(Math.random() * 3);
+      el.textContent = base.toLocaleString();
+    }, 3000);
+  }
+  animateCounter();
+
+  // Set homepage nav link as active on load
+  document.getElementById('nav-home').classList.add('active');
+</script>
+</body>
+</html>
