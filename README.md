@@ -67,4 +67,4 @@ Educational sustainability blog and buying guides.
 
 ## Author
 
-Created by Trung
+Created by Bao
